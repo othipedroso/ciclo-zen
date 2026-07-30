@@ -1,56 +1,58 @@
 # 🌸 CicloZen
 
-![Tech Stack](https://img.shields.io/badge/Tech-HTML5%20%7C%20CSS3%20%7C%20JS-pink?style=flat-square)
-![Privacy](https://img.shields.io/badge/Data-Local%20Storage%20(Offline)-green?style=flat-square)
+![Tech Stack](https://img.shields.io/badge/Tech-HTML5%20%7C%20CSS3%20%7C%20Vanilla_JS-pink?style=flat-square)
+![Privacy](https://img.shields.io/badge/Data-Local_Storage_(Offline)-green?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Production-blue?style=flat-square)
 ![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
 
-> **Rastreador de ciclo menstrual focado em privacidade e simplicidade.** Uma aplicação web para estimar janelas de fertilidade, previsão menstrual e alertas de fase lútea (TPM) sem enviar dados para a nuvem.
+> **Aplicação web focada em privacidade (Privacy-First) para monitoramento de ciclos menstruais.**
+> Cálculos de janelas de fertilidade, previsão de ciclos e alertas de fase lútea executados 100% no client-side.
+
+[🚀 Acesse a Aplicação em Produção](https://othipedroso.github.io/ciclo-zen/)
 
 ---
 
-## 🔗 [Acesse o App Online](https://othipedroso.github.io/ciclo-zen/)
+## 🎯 Proposta de Valor e Arquitetura do Projeto
+O mercado de *health-tech* apresenta diversas soluções que exigem cadastro e armazenam dados biológicos sensíveis em servidores de terceiros. O **CicloZen** foi arquitetado para solucionar esse problema através de uma abordagem estrita de **Privacy-First**.
+
+O projeto funciona sob o conceito de uma aplicação *serverless* e *offline-first*, onde todas as lógicas de negócio e cálculos cronológicos ocorrem localmente no navegador do usuário. Isso garante que nenhuma informação sensível seja trafegada em rede, entregando autonomia, segurança e valor prático ao usuário final.
 
 ---
 
-## 🎯 O Propósito
-A maioria dos aplicativos de saúde feminina exige cadastro, login e envia dados íntimos para servidores externos. O **CicloZen** foi criado com a filosofia **"Privacy-First"**: todos os cálculos são feitos no navegador da usuária e os dados persistem apenas no dispositivo dela.
+## ⚙️ Regras de Negócio e Funcionalidades
 
-É uma ferramenta útil para o dia a dia, ajudando no planejamento pessoal e no autoconhecimento do corpo.
+### 1. Motor de Previsão de Ciclo
+- Processa o *input* do usuário para projetar a data exata do início do próximo ciclo.
+- Algoritmo dinâmico que se adapta a durações customizadas (ex: ciclos de 28, 30 ou 35 dias).
 
----
+### 2. Estimativa de Janela Fértil
+- Implementação lógica do método da **Tabela (Ogino-Knaus)** de forma reversa.
+- Isola matematicamente a data de ovulação (14 dias antes do fim do ciclo) e projeta a janela de alta probabilidade de concepção.
 
-## ✨ Funcionalidades
+### 3. Indicador de Fase Lútea (TPM)
+- Sinaliza automaticamente a transição para a fase lútea (tipicamente 7 dias antes do reinício do ciclo), fornecendo previsibilidade sobre alterações físicas e de humor.
 
-### 1. 🩸 Previsão de Ciclo
-- Calcula a data exata do início da próxima menstruação com base na duração média do ciclo da usuária.
-- Algoritmo ajustável (ex: ciclos de 28, 30 ou 35 dias).
-
-### 2. 🌿 Janela Fértil & Ovulação
-- Utiliza o método de **Tabela (Ogino-Knaus)** reverso.
-- Estima a ovulação 14 dias antes do final do ciclo e projeta a janela de maior probabilidade de gravidez.
-
-### 3. 😡 Alerta de TPM (Fase Lútea)
-- Identifica a entrada na fase lútea (aproximadamente 1 semana antes da menstruação), período comum para oscilações de humor e sintomas físicos.
-
-### 4. 🔒 Persistência Local (Offline)
-- Usa a API `localStorage` do navegador.
-- A usuária não precisa redigitar as datas toda vez que abre o app.
-- **Zero rastreamento:** Nenhuma informação sai do dispositivo.
+### 4. Persistência de Dados Zero-Trust (Local)
+- Integração direta com a API `localStorage` do navegador para retenção de estado.
+- Garante uma experiência de usuário (UX) fluida sem necessidade de reentrada de dados, mantendo total soberania das informações.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 💻 Stack Tecnológico e Decisões Técnicas
 
-- **HTML5 Semântico:** Estrutura acessível.
-- **CSS3 Moderno:** Design responsivo, paleta de cores suaves ("Calm UI") e Cards informativos.
-- **Vanilla JavaScript:**
-  - Manipulação avançada do objeto `Date()` (cálculo de milissegundos, dias e meses).
-  - Lógica de persistência de dados no Front-end.
+- **HTML5:** Estruturação semântica do DOM focada em acessibilidade.
+- **CSS3:** Design responsivo baseado no sistema "Calm UI", utilizando variáveis CSS para padronização global e *Grid Layout* para os componentes de resultados.
+- **Vanilla JavaScript (ES6):**
+  - Manipulação avançada do objeto `Date()` (tratamento de *edge cases* e *timezone offsets* utilizando *strings* ISO para evitar inconsistências de fuso horário).
+  - Manipulação de DOM e gerenciamento de estado da interface em tempo real.
+  - Lógica de persistência de dados *client-side*.
 
 ---
 
-## 🚀 Como rodar localmente
+## 🚀 Execução Local
 
-1. Clone este repositório:
+Por ser uma aplicação 100% *client-side*, não há necessidade de provisionamento de *backend* ou contêineres.
+
+1. Clone o repositório:
    ```bash
    git clone [https://github.com/othipedroso/ciclo-zen.git](https://github.com/othipedroso/ciclo-zen.git)
